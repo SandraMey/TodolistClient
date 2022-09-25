@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import ReactTooltip from "react-tooltip";
+import ModalAddTodo from "./ModalAddTodo";
 
 const ListTodo = () => {
   const [todos, setTodos] = useState([]);
+  const [popupActive, setPopupActive] = useState(false);
 
   const GetTodos = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/todos`);
@@ -77,6 +79,23 @@ const ListTodo = () => {
           </div>
         ))}
       </div>
+      <div
+        role="presentation"
+        className="addPopup"
+        onClick={() => setPopupActive(true)}
+      >
+        +
+      </div>
+
+      {popupActive ? (
+        <ModalAddTodo
+          setPopupActive={setPopupActive}
+          setTodos={setTodos}
+          todos={todos}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
