@@ -78,3 +78,34 @@ h4 {
 .todo.todo.is_complete .text {
   text-decoration: line-through;
 }
+
+.todo .more_todo {
+  position: absolute;
+  top: 50%;
+  right: 52px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+  color: var(--light);
+  background-color: var(--secondary);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo .description {
+  height: auto;
+  top: 100px;
+  background-color: var(--light-alt);
+}
+
+.go_back {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 36px;
+  margin-top: -68px;
+  color: var(--light);
+}

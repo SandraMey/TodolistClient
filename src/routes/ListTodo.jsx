@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import ReactTooltip from "react-tooltip";
 
 const ListTodo = () => {
   const [todos, setTodos] = useState([]);
@@ -66,6 +68,12 @@ const ListTodo = () => {
             >
               {todo.title}
             </div>
+            <Link to={`/detail/${todo._id}`}>
+              <p data-tip="See more">
+                <ReactTooltip />
+                <div className="more_todo">...</div>
+              </p>
+            </Link>
           </div>
         ))}
       </div>
