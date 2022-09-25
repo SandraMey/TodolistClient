@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const ListTodo = () => {
   const [todos, setTodos] = useState([]);
@@ -12,6 +13,24 @@ const ListTodo = () => {
   useEffect(() => {
     GetTodos();
   }, []);
+
+  const completeTodo = async (id) => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/todo/complete/${id}`
+    );
+
+    setTodos((todosComplete) =>
+      todosComplete.map((todo) => {
+        if (todo._id === data._id) {
+          todo.complete = data.complete;
+          todo.completeDate = moment();
+        }
+
+        return todo;
+      })
+    );
+    GetTodos();
+  };
 
   return (
     <div className="App">
@@ -33,7 +52,18 @@ const ListTodo = () => {
             className={`todo${todo.complete ? " is_complete" : ""}`}
             key={todo._id}
           >
-            <div role="presentation" className="text">
+            <div
+              role="presentation"
+              className="checkbox"
+              onClick={() => completeTodo(todo._id)}
+            >
+              {" "}
+            </div>
+            <div
+              role="presentation"
+              className="text"
+              onClick={() => completeTodo(todo._id)}
+            >
               {todo.title}
             </div>
           </div>
