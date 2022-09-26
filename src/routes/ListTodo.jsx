@@ -36,6 +36,16 @@ const ListTodo = () => {
     GetTodos();
   };
 
+  const deleteTodo = async (id) => {
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/todo/delete/${id}`
+    );
+
+    setTodos((todosDeleted) =>
+      todosDeleted.filter((todo) => todo._id !== data._id)
+    );
+  };
+
   return (
     <div className="App">
       <h1>Welcome</h1>
@@ -76,6 +86,13 @@ const ListTodo = () => {
                 <div className="more_todo">...</div>
               </p>
             </Link>
+            <div
+              role="presentation"
+              className="delete_todo"
+              onClick={() => deleteTodo(todo._id)}
+            >
+              x
+            </div>
           </div>
         ))}
       </div>

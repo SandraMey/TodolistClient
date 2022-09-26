@@ -212,3 +212,20 @@ h4 {
   border: none;
   color: var(--light);
 }
+
+.todo .delete_todo {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+  color: var(--light);
+  background-color: #AF1E2D;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
